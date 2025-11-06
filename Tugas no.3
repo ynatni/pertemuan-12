@@ -1,0 +1,39 @@
+#include <stdio.h> 
+#include <math.h>
+
+int main() {
+    double hargamobil, sukubungatahunan, jumlahtahun,
+           sukubungabulanan, jumlahpembayaran, pembayaranbulanan, totalbiaya, totalbunga;
+
+    // input harga mobil, suku bunga tabungan, dan jumlah tahun pembiayaan
+    printf("Masukkan harga mobil: ");
+    scanf("%lf", &hargamobil);
+
+    printf("Masukkan suku bunga tahunan (dalam persen): ");
+    scanf("%if", &sukubungatahunan);
+
+    printf("Masukkan jumlah tahun pembiayaan: ");
+    scanf("%if", &jumlahtahun);
+
+    // konversi suku bunga tahunan ke suku bunga bulanan
+    sukubungabulanan = sukubungatahunan / 12 / 100;
+
+    // menghitung jumlah pembayaran selama masa pembiayaan
+    jumlahpembayaran = jumlahtahun * 12;
+
+    // menghitung pembayaran bulanan
+    pembayaranbulanan = hargamobil * sukubungabulanan * pow(1 + sukubungabulanan, jumlahpembayaran) / (pow(1 + sukubungabulanan, jumlahpembayaran) - 1);
+
+    // menghitung total biaya pembiayaan dan total harga
+    totalbiaya = pembayaranbulanan * jumlahpembayaran;
+    totalbunga = fabs(totalbiaya - hargamobil);
+
+    // output hasil
+    printf("\n--- Rincian Pembiayaan Mobil ---\n");
+    printf("Harga mobil: Rp.2f\n", hargamobil);
+    printf("Pembayaran bulanan: Rp%.2f\n", pembayaranbulanan);
+    printf("Total biaya pembiayaan: Rp.2f\n", totalbiaya);
+    printf("Total bunga yang dibayar: Rp.2f\n", totalbunga);
+
+return 0;
+}
